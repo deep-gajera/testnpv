@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 rootProject.name = "Deep Vpn"
 include ':app'
 include ':Deepvnp'
+project(":Deepvnp").name = "myapp-library"
