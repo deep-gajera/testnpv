@@ -32,7 +32,7 @@ public class Interstitial_Ads_SplashBack {
                 Show_AdsAdx(source_class);
         }
         else{
-            source_class.finishAffinity();
+            source_class.finish();
         }
     }
 
@@ -51,7 +51,7 @@ public class Interstitial_Ads_SplashBack {
                             super.onAdFailedToShowFullScreenContent(adError);
                             mInterstitialAd_admob = null;
                             isFullScreenShow = false;
-                            source_class.finishAffinity();
+                            source_class.finish();
 
                         }
 
@@ -68,7 +68,7 @@ public class Interstitial_Ads_SplashBack {
                             super.onAdDismissedFullScreenContent();
                             isFullScreenShow = false;
 
-                            source_class.finishAffinity();
+                            source_class.finish();
 
                         }
 
@@ -84,13 +84,13 @@ public class Interstitial_Ads_SplashBack {
                     mInterstitialAd_admob = null;
                     isFullScreenShow = false;
 
-                    source_class.finishAffinity();
+                    source_class.finish();
 
                 }
             });
         } else {
 
-            source_class.finishAffinity();
+            source_class.finish();
 
         }
     }
@@ -112,7 +112,7 @@ public class Interstitial_Ads_SplashBack {
                             isFullScreenShow = false;
 
 
-                            source_class.finishAffinity();
+                            source_class.finish();
                         }
 
                         @Override
@@ -129,7 +129,7 @@ public class Interstitial_Ads_SplashBack {
                             isFullScreenShow = false;
 
 
-                            source_class.finishAffinity();
+                            source_class.finish();
                         }
 
                         @Override
@@ -146,12 +146,12 @@ public class Interstitial_Ads_SplashBack {
                     isFullScreenShow = false;
 
 
-                    source_class.finishAffinity();
+                    source_class.finish();
                 }
             });
         } else {
 
-            source_class.finishAffinity();
+            source_class.finish();
         }
     }
 
