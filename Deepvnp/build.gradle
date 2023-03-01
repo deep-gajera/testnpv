@@ -1,36 +1,14 @@
 plugins {
     id "com.android.library"
-    id 'maven-publish'
-}
-
-publishing {
-    publications {
-        myPublication(MavenPublication) {
-            groupId = "com.myapp-library"
-            artifactId = "myapp-library"
-            version = "1.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-
-        }
-    }
-    repositories {
-        maven {
-            name = "testnpv"
-            url = uri("${project.buildDir}/repo")
-        }
-    }
 }
 
 android {
-    namespace 'org.mycompany.personal.use.app'
-    compileSdk 33
+    namespace 'com.live.deeplib.vpnmodule'
+    compileSdk 31
 
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -60,7 +38,7 @@ dependencies {
     implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.0.0'
     implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.0.0'
 
-    implementation 'com.facebook.android:audience-network-sdk:6.12.0'
+    implementation 'com.facebook.android:audience-network-sdk:6.11.0'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
 
@@ -68,11 +46,11 @@ dependencies {
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
-    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    implementation 'com.google.android.gms:play-services-ads:21.0.0'
 
     implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
 
