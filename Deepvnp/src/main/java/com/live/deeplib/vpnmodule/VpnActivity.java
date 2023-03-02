@@ -183,10 +183,16 @@ public class VpnActivity {
             dialog.setCanceledOnTouchOutside(false);
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             final AppCompatButton btncontinue = dialog.findViewById(R.id.btncontinue);
+            final AppCompatButton btncClose = dialog.findViewById(R.id.btncClose);
             btncontinue.setOnClickListener(v -> {
                 isDialogShow = true;
                 dialog.dismiss();
                 new Handler().postDelayed(() -> checkVpnState(activity, intent), 1000);
+            });
+
+            btncClose.setOnClickListener(v -> {
+                isDialogShow = true;
+                activity.finishAffinity();
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -274,10 +280,14 @@ public class VpnActivity {
             String[] uvnamearr = preference.getVpn_name().split(",");
             // generating the index using Math.random()
             int index = (int) (Math.random() * unurlarr.length);
-            for (String s : strarr) {
-                if (s.equals(cncode)) {
-                    preference.setFound(true);
-                    break;
+            if (TextUtils.isEmpty(cncode)) {
+                preference.setFound(true);
+            } else {
+                for (String s : strarr) {
+                    if (s.equals(cncode)) {
+                        preference.setFound(true);
+                        break;
+                    }
                 }
             }
             if (!preference.isFound()) {
