@@ -67,6 +67,8 @@ public class AppPreference {
     String screen = "screen";
     String page = "page";
     String backflag = "backflag";
+    String native_type_list = "native_type_list";
+    String native_type_othe = "native_type_othe";
     boolean found = false;
     public static boolean isFullScreenShow = false;
 
@@ -468,5 +470,21 @@ public class AppPreference {
 
     public void setAdbtcolor(String str) {
         this.prefEditor.putString(this.adbtcolor, str).commit();
+    }
+
+    public String getNativeTypeList() {
+        return native_type_list;
+    }
+
+    public void setNativeTypeList(String type) {
+        this.native_type_list = type;
+    }
+
+    public String getNativeTypeOther() {
+        return native_type_othe;
+    }
+
+    public void setNativeTypeOther(String type) {
+        this.native_type_othe = type;
     }
 }

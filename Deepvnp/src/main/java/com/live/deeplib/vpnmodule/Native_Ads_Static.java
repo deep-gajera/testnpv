@@ -14,6 +14,28 @@ public class Native_Ads_Static {
         this.context = context;
     }
 
+    public void addNativeAd(ViewGroup viewGroup, boolean isList) {
+        String type = isList ? new AppPreference(context).getNativeTypeList() : new AppPreference(context).getNativeTypeOther();
+        switch (type) {
+            case "banner":
+                Native_Banner_Ads(viewGroup);
+                break;
+
+            case "small":
+                Native_Banner_Ads1(viewGroup);
+                break;
+
+            case "medium":
+                Native_Ads1(viewGroup);
+                break;
+
+            case "large":
+                Native_Ads(viewGroup);
+                break;
+        }
+    }
+
+
     public void Native_Ads(ViewGroup viewGroup) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_static_native_ads, null);
         viewGroup.removeAllViews();
