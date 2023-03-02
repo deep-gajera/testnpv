@@ -25,7 +25,7 @@ public class Interstitial_Ads_SplashBack {
     public void Show_Ads(Activity source_class) {
 
         AppPreference appPreference = new AppPreference(source_class);
-        if(appPreference.getBackflag().equals("on")) {
+        if(appPreference.getBackflag().equals("on") && Constant.Back_Counter % Integer.parseInt(appPreference.getBackcount()) == 0)  {
             if (appPreference.get_Ad_Flag().equals("admob")) {
                 Show_AdsAdmob(source_class);
             } else
@@ -44,6 +44,7 @@ public class Interstitial_Ads_SplashBack {
                 @Override
                 public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     mInterstitialAd_admob = interstitialAd;
+                    Constant.Back_Counter++;
                     mInterstitialAd_admob.show(source_class);
                     mInterstitialAd_admob.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
@@ -103,6 +104,7 @@ public class Interstitial_Ads_SplashBack {
                 @Override
                 public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
                     adManagerInterstitialAd = interstitialAd;
+                    Constant.Back_Counter++;
                     adManagerInterstitialAd.show(source_class);
                     adManagerInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override

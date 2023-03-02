@@ -67,8 +67,9 @@ public class AppPreference {
     String screen = "screen";
     String page = "page";
     String backflag = "backflag";
+    String backcount  = "backcount ";
     String native_type_list = "native_type_list";
-    String native_type_othe = "native_type_othe";
+    String native_type_other = "native_type_other";
     boolean found = false;
     public static boolean isFullScreenShow = false;
 
@@ -138,6 +139,14 @@ public class AppPreference {
 
     public void setBackflag(String backflag) {
         this.prefEditor.putString(this.backflag, backflag).commit();
+    }
+
+    public String getBackcount() {
+        return this.appSharedPref.getString(this.backcount, "");
+    }
+
+    public void setBackcount(String backflag) {
+        this.prefEditor.putString(this.backcount, backflag).commit();
     }
 
     public String getEcn() {
@@ -473,18 +482,18 @@ public class AppPreference {
     }
 
     public String getNativeTypeList() {
-        return native_type_list;
+        return this.appSharedPref.getString(this.native_type_list, "");
     }
 
     public void setNativeTypeList(String type) {
-        this.native_type_list = type;
+        this.prefEditor.putString(this.native_type_list, type).commit();
     }
 
     public String getNativeTypeOther() {
-        return native_type_othe;
+        return this.appSharedPref.getString(this.native_type_other, "");
     }
 
     public void setNativeTypeOther(String type) {
-        this.native_type_othe = type;
+        this.prefEditor.putString(this.native_type_other, type).commit();
     }
 }

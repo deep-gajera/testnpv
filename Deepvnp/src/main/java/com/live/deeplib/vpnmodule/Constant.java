@@ -18,6 +18,7 @@ public class Constant {
     public static int Alt_Cnt_Banner = 1;
     public static boolean IS_TIME_INTERVAL = true;
     public static int Front_Counter = 0;
+    public static int Back_Counter = 0;
     public static int FullAdCounter = 0;
     public static int NAtiveAdCounter = 0;
     public static int NAtiveBannerAdCounter = 0;
