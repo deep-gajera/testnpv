@@ -21,13 +21,20 @@ import unified.vpn.sdk.UnifiedSdk;
 
 public class MyApplication extends Application {
     private static final String CHANNELid = "vpn";
+    private static MyApplication instance;
+    public static void loadAds(){
+        MobileAds.initialize(
+                instance,
+                initializationStatus ->{
+                    new AppOpenManager(instance);
+                    new Native_Ads_Load(instance);
+                });
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        MobileAds.initialize(
-                this,
-                initializationStatus -> new AppOpenManager(this));
+        instance = this;
         AudienceNetworkAds.initialize(this);
 
         inithydra_Sdk();
