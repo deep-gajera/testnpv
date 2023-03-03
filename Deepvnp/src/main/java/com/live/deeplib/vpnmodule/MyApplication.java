@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,11 @@ import unified.vpn.sdk.UnifiedSdk;
 public class MyApplication extends Application {
     private static final String CHANNELid = "vpn";
     private static MyApplication instance;
-    public static void loadAds(){
+    public static void loadAds(OnInitializationCompleteListener listener){
         MobileAds.initialize(
                 instance,
                 initializationStatus ->{
+                    listener.onInitializationComplete(initializationStatus);
                     new AppOpenManager(instance);
                     new Native_Ads_Load(instance);
                 });

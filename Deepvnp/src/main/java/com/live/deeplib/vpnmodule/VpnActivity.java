@@ -35,6 +35,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.appopen.AppOpenAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,15 +86,8 @@ public class VpnActivity {
 
                             boolean check = checkReferrer(referrerUrl, preference.getMedium());
                             if (check) {
-                                if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                                        CallOpenAd(preference, activity, intent);
-                                    } else {
-                                        new Interstitial_Ads_Splash().Show_Ads(activity, intent, true);
-                                    }
-                                } else {
-                                    toMove(activity, intent);
-                                }
+
+                                startAdLoading(activity, preference, intent);
                             } else {
                                 intDialog(activity, intent);
                                 checkVpnState(activity, intent);
@@ -307,11 +302,7 @@ public class VpnActivity {
                 }
             } else {
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                        CallOpenAd(preference, activity, intent);
-                    } else {
-                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                    }
+                    startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
                     activity.finish();
@@ -319,11 +310,7 @@ public class VpnActivity {
             }
         } else {
             if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                    CallOpenAd(preference, activity, intent);
-                } else {
-                    new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                }
+                startAdLoading(activity, preference, intent);
             } else {
                 activity.startActivity(intent);
                 activity.finish();
@@ -342,6 +329,16 @@ public class VpnActivity {
 
             @Override
             public void failure(@NonNull VpnException e) {
+            }
+        });
+    }
+
+    private static void startAdLoading(Activity activity, AppPreference preference, Intent intent){
+        MyApplication.loadAds(initializationStatus -> {
+            if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+                CallOpenAd(preference, activity, intent);
+            } else {
+                new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 1000);
             }
         });
     }
@@ -366,11 +363,7 @@ public class VpnActivity {
                 postDataUsing(activity, cncode, "c", pkg, preference.getMedium());
                 startService(activity);
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                        CallOpenAd(preference, activity, intent);
-                    } else {
-                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                    }
+                   startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
                     activity.finish();
