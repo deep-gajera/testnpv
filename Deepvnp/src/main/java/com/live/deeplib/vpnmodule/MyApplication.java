@@ -3,8 +3,12 @@ package com.live.deeplib.vpnmodule;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
@@ -20,7 +24,7 @@ import unified.vpn.sdk.SdkNotificationConfig;
 import unified.vpn.sdk.TransportConfig;
 import unified.vpn.sdk.UnifiedSdk;
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     private static final String CHANNELid = "vpn";
     private static MyApplication instance;
     public static void loadAds(OnInitializationCompleteListener listener){
@@ -31,6 +35,13 @@ public class MyApplication extends Application {
                     new AppOpenManager(instance);
                     new Native_Ads_Load(instance);
                 });
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @Override
