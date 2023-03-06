@@ -34,9 +34,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //vpn gradle
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:sdk-core:4.0.0'
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.0.0'
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.0.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:sdk-core:4.2.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.2.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.2.0'
 
     implementation 'com.facebook.android:audience-network-sdk:6.12.0'
 
