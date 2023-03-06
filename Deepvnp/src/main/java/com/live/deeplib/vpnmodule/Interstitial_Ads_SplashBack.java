@@ -34,6 +34,7 @@ public class Interstitial_Ads_SplashBack {
         else{
             source_class.finish();
         }
+        Constant.Back_Counter++;
     }
 
     public void Show_AdsAdmob(Activity source_class) {
@@ -44,7 +45,6 @@ public class Interstitial_Ads_SplashBack {
                 @Override
                 public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     mInterstitialAd_admob = interstitialAd;
-                    Constant.Back_Counter++;
                     mInterstitialAd_admob.show(source_class);
                     mInterstitialAd_admob.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
@@ -104,7 +104,6 @@ public class Interstitial_Ads_SplashBack {
                 @Override
                 public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
                     adManagerInterstitialAd = interstitialAd;
-                    Constant.Back_Counter++;
                     adManagerInterstitialAd.show(source_class);
                     adManagerInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
