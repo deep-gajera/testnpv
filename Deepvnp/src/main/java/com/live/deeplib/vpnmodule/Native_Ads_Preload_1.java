@@ -98,9 +98,7 @@ public class Native_Ads_Preload_1 {
             templateView.setVisibility(View.VISIBLE);
             templateView.setStyles(build);
             templateView.setNativeAd(nativeAd);
-            Button button = templateView.findViewById(R.id.cta);
-            String a = preference.getAdbtcolor();
-            button.setBackgroundColor(Color.parseColor("#" + a));
+            
             viewGroup.setVisibility(View.VISIBLE);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
@@ -122,9 +120,7 @@ public class Native_Ads_Preload_1 {
             templateView.setVisibility(View.VISIBLE);
             templateView.setStyles(build);
             templateView.setNativeAd(nativeAd);
-            Button button = templateView.findViewById(R.id.cta);
-            String a = preference.getAdbtcolor();
-            button.setBackgroundColor(Color.parseColor("#" + a));
+            
             viewGroup.setVisibility(View.VISIBLE);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
@@ -146,9 +142,7 @@ public class Native_Ads_Preload_1 {
             templateView.setVisibility(View.VISIBLE);
             templateView.setStyles(build);
             templateView.setNativeAd(nativeAd);
-            Button button = templateView.findViewById(R.id.cta);
-            String a = preference.getAdbtcolor();
-            button.setBackgroundColor(Color.parseColor("#" + a));
+            
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
 
@@ -170,9 +164,7 @@ public class Native_Ads_Preload_1 {
             templateView.setVisibility(View.VISIBLE);
             templateView.setStyles(build);
             templateView.setNativeAd(nativeAd);
-            Button button = templateView.findViewById(R.id.cta);
-            String a = preference.getAdbtcolor();
-            button.setBackgroundColor(Color.parseColor("#" + a));
+            
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
 
