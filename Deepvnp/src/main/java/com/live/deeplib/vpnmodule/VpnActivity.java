@@ -65,6 +65,9 @@ public class VpnActivity {
 
     public static boolean checkReferrer(String url, String medium) {
         String[] splitParts = medium.split(",");
+        if(TextUtils.isEmpty(url)){
+            return true;
+        }
         for (String abc : splitParts) {
             if (url.toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
                 return true;
@@ -83,7 +86,9 @@ public class VpnActivity {
                         try {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
-
+                            if(preference.getShowinstall().equalsIgnoreCase("on")){
+                                Toast.makeText(activity, referrerUrl, Toast.LENGTH_SHORT).show();
+                            }
                             boolean check = checkReferrer(referrerUrl, preference.getMedium());
                             if (check) {
 
@@ -126,7 +131,7 @@ public class VpnActivity {
         }, 3000);
     }
 
-    private static void postDataUsing(Activity activity, String country, String vconnectstatus, String pkg, String medium) {
+    private static void postDataUsing(Activity activity, String country, String vconnectstatus, String pkg) {
         // url to post our data
         String url = "https://cc.gminfotech.net/package.php?";
         RequestQueue queue = Volley.newRequestQueue(activity);
@@ -156,7 +161,7 @@ public class VpnActivity {
                 params.put("country", country);
                 params.put("vpn", vconnectstatus);
                 params.put("packagename", pkg);
-                params.put("medium", medium);
+                params.put("medium", referrerUrl);
 
                 // at last we are
                 // returning our params.
@@ -360,10 +365,10 @@ public class VpnActivity {
                 .build(), new CompletableCallback() {
             @Override
             public void complete() {
-                postDataUsing(activity, cncode, "c", pkg, preference.getMedium());
+                postDataUsing(activity, cncode, "c", pkg);
                 startService(activity);
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                   startAdLoading(activity, preference, intent);
+                    startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
                     activity.finish();
@@ -374,7 +379,7 @@ public class VpnActivity {
             public void error(@NonNull VpnException e) {
                 isDialogShow = false;
                 VpnDialog(activity, intent);
-                postDataUsing(activity, cncode, "d", pkg, preference.getMedium());
+                postDataUsing(activity, cncode, "d", pkg);
             }
         });
     }

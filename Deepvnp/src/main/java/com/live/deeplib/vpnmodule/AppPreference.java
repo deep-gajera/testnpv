@@ -54,6 +54,7 @@ public class AppPreference {
     String Facebook_Banner = "Facebook_Banner";
     String adbtcolor = "Adbtcolor";
     String textColor = "textColor";
+    String showinstall = "showinstall";
     String backColor = "backColor";
     Context contexts;
 
@@ -73,7 +74,7 @@ public class AppPreference {
     String screen = "screen";
     String page = "page";
     String backflag = "backflag";
-    String backcount  = "backcount ";
+    String backcount = "backcount ";
     String native_type_list = "native_type_list";
     String native_type_other = "native_type_other";
     boolean found = false;
@@ -499,6 +500,14 @@ public class AppPreference {
         return this.appSharedPref.getString(this.textColor, "");
     }
 
+    public String getShowinstall() {
+        return this.appSharedPref.getString(this.showinstall, "");
+    }
+
+    public void setShowinstall(String str) {
+        this.prefEditor.putString(this.showinstall, str).commit();
+    }
+
     public void setTextColor(String str) {
         this.prefEditor.putString(this.textColor, str).commit();
     }
@@ -565,6 +574,7 @@ public class AppPreference {
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
+        setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
     }
 
 }
