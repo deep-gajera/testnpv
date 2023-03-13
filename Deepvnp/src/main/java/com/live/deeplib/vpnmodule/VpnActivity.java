@@ -87,7 +87,7 @@ public class VpnActivity {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
                             if(preference.getShowinstall().equalsIgnoreCase("on")){
-                                Toast.makeText(activity, "referrer ":referrerUrl, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity, "referrer :"+referrerUrl, Toast.LENGTH_SHORT).show();
                             }
                             boolean check = checkReferrer(referrerUrl, preference.getMedium());
                             if (check) {
