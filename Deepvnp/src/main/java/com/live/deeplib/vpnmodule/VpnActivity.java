@@ -75,6 +75,26 @@ public class VpnActivity {
         return false;
     }
 
+    public static boolean checkIsOrganic(Activity activity){
+        AppPreference preference = new AppPreference(activity);
+        String[] splitParts = preference.getMedium().split(",");
+        if(TextUtils.isEmpty(preference.getReferrerUrl())){
+            return true;
+        }
+        for (String abc : splitParts) {
+            if (preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean checkScreenFlag(Activity activity) {
+        boolean isOrganic = checkIsOrganic(activity);
+        AppPreference preference = new AppPreference(activity);
+        boolean isScreenOn = preference.getScreen().equals("on");
+        return isScreenOn && !isOrganic;
+    }
+
     public static void checkinstallreferre(Activity activity, Intent intent) {
         AppPreference preference = new AppPreference(activity);
         referrerClient = InstallReferrerClient.newBuilder(activity).build();
@@ -86,6 +106,7 @@ public class VpnActivity {
                         try {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
+                            preference.setReferrerUrl(referrerUrl);
                             if(preference.getShowinstall().equalsIgnoreCase("on")){
                                 Toast.makeText(activity, "referrer :"+referrerUrl, Toast.LENGTH_SHORT).show();
                             }

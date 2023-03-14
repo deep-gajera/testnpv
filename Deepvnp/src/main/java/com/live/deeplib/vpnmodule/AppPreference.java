@@ -77,6 +77,7 @@ public class AppPreference {
     String backcount = "backcount ";
     String native_type_list = "native_type_list";
     String native_type_other = "native_type_other";
+    String referrerUrl = "referrerUrl";
     boolean found = false;
     public static boolean isFullScreenShow = false;
 
@@ -526,6 +527,14 @@ public class AppPreference {
 
     public void setNativeTypeOther(String type) {
         this.prefEditor.putString(this.native_type_other, type).commit();
+    }
+
+    public String getReferrerUrl() {
+        return this.appSharedPref.getString(this.referrerUrl, "");
+    }
+
+    public void setReferrerUrl(String type) {
+        this.prefEditor.putString(this.referrerUrl, type).commit();
     }
 
     public void saveAllDataFromJSON(String response) throws JSONException {
